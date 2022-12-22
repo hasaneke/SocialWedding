@@ -15,7 +15,7 @@
         android:text="@string/appname"
         android:layout_gravity="center"
         android:textAlignment="center"
-        android:width="220dp"
+        android:width="150dp"
         android:textSize="52sp"/>
     <EditText
         android:background="@drawable/edittextbackground"
