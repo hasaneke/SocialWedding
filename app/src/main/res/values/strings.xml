@@ -3,4 +3,8 @@
     <string name="appname">Social Wedding</string>
     <string name="don_have_an_account">Don`` have an account?</string>
     <string name="login">Login</string>
+    <string name="username">username</string>
+    <string name="password">password</string>
+    <string name="register">Register</string>
+    <string name="e_mail">e-mail</string>
 </resources>
