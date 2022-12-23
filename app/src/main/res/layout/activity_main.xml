@@ -15,7 +15,7 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:width="220dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="60dp"
         android:textSize="42sp"/>
     <ImageView
         android:layout_width="wrap_content"
@@ -27,7 +27,7 @@
         android:id="@+id/id_email"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawablePadding="8dp"
-        android:hint="@string/e_mail"
+        android:hint="Email"
         android:textSize="16sp"
         android:background="@drawable/edittextbackground"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
         android:id="@+id/id_password"
         android:drawableStart="@drawable/ic_baseline_lock_24"
         android:drawablePadding="8dp"
-        android:hint="@string/password"
+        android:hint="password"
         android:inputType="numberPassword"
         android:background="@drawable/edittextbackground"
         android:layout_gravity="center"
@@ -64,7 +64,7 @@
             android:layout_width="170dp"
             android:layout_height="20dp"/>
         <TextView
-            android:text="@string/register"
+            android:text="Register"
             android:textColor="@color/design_default_color_secondary"
             android:textSize="12sp"
             android:layout_width="wrap_content"

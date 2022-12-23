@@ -2,11 +2,14 @@ package com.example.socialwedding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.socialwedding.activities.HomeActivity;
 
 public class MainActivity extends AppCompatActivity {
     EditText emailEditText;
@@ -26,8 +29,13 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this,
+                        HomeActivity.class);
+                MainActivity.this.startActivity(intent);
                 if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
                     showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
+
+
                 }else {
                     showToastMessage(LOGINSTATUS.LOGIN_FAILED);
                 }
