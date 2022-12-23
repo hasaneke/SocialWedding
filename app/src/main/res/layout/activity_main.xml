@@ -24,6 +24,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp" />
     <EditText
+        android:id="@+id/id_email"
         android:drawableStart="@drawable/ic_baseline_email_24"
         android:drawablePadding="8dp"
         android:hint="@string/e_mail"
@@ -36,6 +37,7 @@
         android:autofillHints=""
         android:inputType="textEmailAddress" />
     <EditText
+        android:id="@+id/id_password"
         android:drawableStart="@drawable/ic_baseline_lock_24"
         android:drawablePadding="8dp"
         android:hint="@string/password"
@@ -69,6 +71,7 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <Button
+        android:id="@+id/login"
         android:layout_marginTop="20dp"
         android:text="@string/login"
         android:layout_gravity="center"
