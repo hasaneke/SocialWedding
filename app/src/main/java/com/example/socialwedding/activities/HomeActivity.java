@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.socialwedding.R;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
 
+
     PostsAdapter adapter;
     String[] coupleNames={"Ken and Barbie","Doc and Marty","Shrek and Donkey","Batman and Robin"};
 
@@ -28,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
             "Some dummy text for a long explanation";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
         //initDummyData();
@@ -60,6 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
     public void FetchWeddings(Cursor c)
     {
