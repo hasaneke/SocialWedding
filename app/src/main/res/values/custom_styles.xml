@@ -3,7 +3,6 @@
     <style name="RoundedSquare">
         <item name="cornerSize">5%</item>
     </style>
-
     <style name="Circular">
         <item name="cornerSize">50%</item>
     </style>
@@ -11,8 +10,4 @@
     <style name="progressBarYellow" parent="@style/Theme.MaterialComponents">
         <item name="colorAccent">@color/yellow_500</item>
     </style>
-
-
-
-
 </resources>
