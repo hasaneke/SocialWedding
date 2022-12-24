@@ -85,7 +85,7 @@ public class DBAdapter {
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
     //---deletes a particular contact---
-    public boolean deleteContact(long rowId)
+    public boolean deletePost(long rowId)
     {
         return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
@@ -96,11 +96,11 @@ public class DBAdapter {
                 KEY_WIFE, KEY_DESCRIPTION, KEY_LIKECOUNT, KEY_IMAGEID}, null, null, null, null, null);
     }
     //---retrieves a particular contact---
-    public Cursor getContact(long rowId) throws SQLException
+    public Cursor getPost(long rowId) throws SQLException
     {
         Cursor mCursor =
                 db.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                                KEY_HUSBAND, KEY_WIFE, KEY_DESCRIPTION, KEY_LIKECOUNT}, KEY_ROWID + "=" + rowId, null,
+                                KEY_HUSBAND, KEY_WIFE, KEY_DESCRIPTION, KEY_LIKECOUNT, KEY_IMAGEID}, KEY_ROWID + "=" + rowId, null,
             null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -108,13 +108,14 @@ public class DBAdapter {
         return mCursor;
     }
     //---updates a contact---
-    public boolean updateContact(long rowId, String name, String email, String description, int likeCount)
+    public boolean updatePost(long rowId, String name, String email, String description, int likeCount, int imageId)
     {
         ContentValues args = new ContentValues();
         args.put(KEY_HUSBAND, name);
         args.put(KEY_WIFE, email);
         args.put(KEY_DESCRIPTION, description);
         args.put(KEY_LIKECOUNT, likeCount);
+        args.put(KEY_IMAGEID, imageId);
         return db.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 }
