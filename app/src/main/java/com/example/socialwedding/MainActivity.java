@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view)  {
                 progress();
                 pb.setVisibility(View.VISIBLE);
+                button.setVisibility(View.INVISIBLE);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
@@ -49,34 +50,29 @@ public class MainActivity extends AppCompatActivity {
 
                         if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
                             showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
-
-
                         }else {
                             showToastMessage(LOGINSTATUS.LOGIN_FAILED);
                         }
                     }
 
-                }, 5000);
-
+                }, 2000);
             }
-
         });
     }
 
    public void progress()   {
-
         final Timer t=new Timer();
         TimerTask tt=new TimerTask() {
             @Override
             public void run() {
-                counter+=2;
+                counter+=8;
                 pb.setProgress(counter);
-                if(counter== 100){
+                if(counter > 100){
                     t.cancel();
                 }
             }
         };
-        t.schedule(tt,0,100);
+        t.schedule(tt,0,50);
     }
      void showToastMessage(LOGINSTATUS loginstatus) {
        switch (loginstatus){

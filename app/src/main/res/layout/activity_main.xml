@@ -10,8 +10,6 @@
     android:padding="20dp"
     tools:context=".MainActivity">
 
-
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -74,22 +72,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="60dp">
     <Button
         android:id="@+id/login"
         android:layout_marginTop="20dp"
         android:text="@string/login"
-        android:layout_gravity="center"
         android:layout_width="116dp"
         android:layout_height="52dp"/>
     <ProgressBar
+        android:id="@+id/main_activity_progress_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      android:id="@+id/main_activity_progress_bar"
-        style="?android:attr/progressBarStyleHorizontal"
-       android:layout_margin="20sp"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_margin="20sp"
         android:padding="15sp"
-        android:visibility="gone"
         android:theme="@style/progressBarYellow"
-
         />
+</FrameLayout>
 </LinearLayout>
