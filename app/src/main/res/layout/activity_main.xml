@@ -6,8 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+
     android:padding="20dp"
     tools:context=".MainActivity">
+
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,4 +81,15 @@
         android:layout_gravity="center"
         android:layout_width="116dp"
         android:layout_height="52dp"/>
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+      android:id="@+id/main_activity_progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+       android:layout_margin="20sp"
+        android:padding="15sp"
+        android:visibility="gone"
+        android:theme="@style/progressBarYellow"
+
+        />
 </LinearLayout>

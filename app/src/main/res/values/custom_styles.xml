@@ -7,4 +7,12 @@
     <style name="Circular">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="progressBarYellow" parent="@style/Theme.AppCompat">
+        <item name="colorAccent">@color/yellow_500</item>
+    </style>
+
+
+
+
 </resources>
