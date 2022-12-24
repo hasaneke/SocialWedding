@@ -3,15 +3,16 @@ package com.example.socialwedding.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.socialwedding.MainActivity;
 import com.example.socialwedding.R;
 import com.example.socialwedding.adapter.PostsAdapter;
-import com.example.socialwedding.models.Post;
+import com.example.socialwedding.database.DBAdapter;
+import com.example.socialwedding.models.WeddingPost;
 
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     PostsAdapter adapter;
     String[] coupleNames={"Ken and Barbie","Doc and Marty","Shrek and Donkey","Batman and Robin"};
 
-    private final ArrayList<Post> postArray = new ArrayList<>();
+    private final ArrayList<WeddingPost> posts = new ArrayList<>();
     final String dummyText = "Some dummy text for a long explanation " +
             "Some dummy text for a long explanation " +
             "Some dummy text for a long explanation " +
@@ -29,9 +30,27 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
-        initDummyData();
+        //initDummyData();
+        DBAdapter db = new DBAdapter(this);
+        db.open();
+        //db.createTable();
+
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed1);
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed2);
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed3);
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed4);
+
+        // GET ALL WEDDINGS
+        Cursor c = db.getAllWeddings();
+        if (c.moveToFirst())
+        {
+            do {
+                FetchWeddings(c);
+            } while (c.moveToNext());
+        }
+        db.close();
         ListView mListView = findViewById(R.id.postsList);
-        adapter = new PostsAdapter(getApplicationContext(), postArray);
+        adapter = new PostsAdapter(getApplicationContext(), posts);
         mListView.setAdapter(adapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -39,17 +58,18 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
                 intent.putExtra("coupleNames",coupleNames[position]);
                 startActivity(intent);
-
             }
         });
     }
+    public void FetchWeddings(Cursor c)
+    {
+        posts.add(new WeddingPost(
+                c.getInt(0),
+                c.getString(1),
+                c.getString(2),
+                c.getString(3),
+                c.getInt(4),
+                c.getInt(5)));
 
-
-    private void initDummyData () {
-        postArray.add(new Post(R.drawable.wed1,coupleNames[0],dummyText,"congrats 12"));
-        postArray.add(new Post(R.drawable.wed1,coupleNames[1],dummyText,"congrats 12"));
-        postArray.add(new Post(R.drawable.wed1,coupleNames[2],"waaaaow","congrats 12"));
-        postArray.add(new Post(R.drawable.wed1,coupleNames[3],"waaaaow","congrats 12"));
     }
-
 }
