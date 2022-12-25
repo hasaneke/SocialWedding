@@ -41,9 +41,8 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.login);
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
 
-        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        String name = callUser();
 
-        String name=sharedPreferences.getString(KEY_MAIL,null);
         if(name != null){
             Intent intent = new Intent(MainActivity.this,HomeActivity.class);
             startActivity(intent);
@@ -53,27 +52,14 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString(KEY_MAIL,emailEditText.getText().toString());
-                editor.putString(KEY_PASSWORD,passwordEditText.getText().toString());
-                editor.apply();
-
-               progress();
+                saveUser();
+                progress();
                 pb.setVisibility(View.VISIBLE);
                 button.setVisibility(View.INVISIBLE);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     public void run() {
-                        Intent intent = new Intent(MainActivity.this,
-                                HomeActivity.class);
-                        MainActivity.this.startActivity(intent);
-                        Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
-
-                       /* if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
-                            showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
-                        }else {
-                            showToastMessage(LOGINSTATUS.LOGIN_FAILED);
-                        }*/
+                        login();
                     }
 
                 }, 2000);
@@ -82,7 +68,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-   public void progress()   {
+    private String callUser() {
+        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        String name=sharedPreferences.getString(KEY_MAIL,null);
+        return name;
+    }
+
+    private void saveUser() {
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        editor.putString(KEY_MAIL,emailEditText.getText().toString());
+        editor.putString(KEY_PASSWORD,passwordEditText.getText().toString());
+        editor.apply();
+    }
+
+    private void login() {
+        Intent intent = new Intent(MainActivity.this,
+                HomeActivity.class);
+        MainActivity.this.startActivity(intent);
+        Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
+
+                       /* if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
+                            showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
+                        }else {
+                            showToastMessage(LOGINSTATUS.LOGIN_FAILED);
+                        }*/
+    }
+
+    public void progress()   {
         final Timer t=new Timer();
         TimerTask tt=new TimerTask() {
             @Override
@@ -96,6 +108,7 @@ public class MainActivity extends AppCompatActivity {
         };
         t.schedule(tt,0,50);
     }
+
      void showToastMessage(LOGINSTATUS loginstatus) {
        switch (loginstatus){
            case LOGIN_SUCCESS:
