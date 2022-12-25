@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.id_password);
         button = (Button) findViewById(R.id.login);
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
+
         CacheAdapter cacheAdapter = new CacheAdapter(getApplicationContext());
         String name = cacheAdapter.checkUserExist();
 

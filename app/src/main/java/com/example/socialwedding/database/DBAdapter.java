@@ -20,8 +20,10 @@ public class DBAdapter {
     static final String DATABASE_TABLE = "weddings";
     static final int DATABASE_VERSION = 1;
     static final String DATABASE_CREATE =
-"create table weddings (_id integer primary key autoincrement, "
+
+            "create table weddings (_id integer primary key autoincrement, "
             + "husband text not null, wife text not null, description text not null, likecount integer not null, imageid integer not null);";
+
     final Context context;
     DatabaseHelper DBHelper;
     SQLiteDatabase db;
@@ -58,7 +60,6 @@ public class DBAdapter {
             onCreate(db);
         }
     }
-
     //---opens the database---
     public DBAdapter open() throws SQLException
     {
