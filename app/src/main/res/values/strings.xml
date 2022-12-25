@@ -10,6 +10,7 @@
     <string name="women">Women</string>
     <string name="explanation">Explanation</string>
     <string name="share">Share</string>
+    <string name="logout">logout</string>
 
 
 </resources>
