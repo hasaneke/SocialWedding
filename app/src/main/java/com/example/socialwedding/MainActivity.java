@@ -13,6 +13,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.socialwedding.activities.HomeActivity;
+import com.example.socialwedding.database.CacheAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button button;
 
-   // String dummyEmail = "abc@gmail.com";
-    //String dummyPassword = "123456";
+    String dummyEmail = "abc@gmail.com";
+    String dummyPassword = "123456";
     String loginSuccessCode = "login-success";
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME="mypref";
@@ -40,58 +41,43 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.id_password);
         button = (Button) findViewById(R.id.login);
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
-
-        String name = callUser();
+        CacheAdapter cacheAdapter = new CacheAdapter(getApplicationContext());
+        String name = cacheAdapter.checkUserExist();
 
         if(name != null){
             Intent intent = new Intent(MainActivity.this,HomeActivity.class);
             startActivity(intent);
         }
-
-        String loginMessage;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
-                saveUser();
-                progress();
-                pb.setVisibility(View.VISIBLE);
-                button.setVisibility(View.INVISIBLE);
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        login();
-                    }
-
-                }, 2000);
-                
+                login();
             }
         });
     }
 
-    private String callUser() {
-        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-        String name=sharedPreferences.getString(KEY_MAIL,null);
-        return name;
-    }
-
-    private void saveUser() {
-        SharedPreferences.Editor editor=sharedPreferences.edit();
-        editor.putString(KEY_MAIL,emailEditText.getText().toString());
-        editor.putString(KEY_PASSWORD,passwordEditText.getText().toString());
-        editor.apply();
-    }
-
     private void login() {
-        Intent intent = new Intent(MainActivity.this,
-                HomeActivity.class);
-        MainActivity.this.startActivity(intent);
-        Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
+        String loginMessage;
+        CacheAdapter.saveUser(emailEditText.getText().toString(),passwordEditText.getText().toString());
+        progress();
+        pb.setVisibility(View.VISIBLE);
+        button.setVisibility(View.INVISIBLE);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = new Intent(MainActivity.this,
+                        HomeActivity.class);
+                MainActivity.this.startActivity(intent);
+                Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
 
-                       /* if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
-                            showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
-                        }else {
-                            showToastMessage(LOGINSTATUS.LOGIN_FAILED);
-                        }*/
+               /* if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
+                    showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
+                }else {
+                    showToastMessage(LOGINSTATUS.LOGIN_FAILED);
+                }*/
+            }
+
+        }, 2000);
     }
 
     public void progress()   {

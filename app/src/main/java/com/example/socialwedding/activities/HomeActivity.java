@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.socialwedding.R;
 import com.example.socialwedding.adapter.PostsAdapter;
+import com.example.socialwedding.database.CacheAdapter;
 import com.example.socialwedding.database.DBAdapter;
 import com.example.socialwedding.models.WeddingPost;
 
@@ -50,10 +51,7 @@ Button share_button,exit_button;
         exit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.clear();
-                editor.commit();
-
+                CacheAdapter.deleteUser();
                 Toast.makeText(HomeActivity.this,"Exit Succesfully",Toast.LENGTH_SHORT).show();
                 finish();
             }
