@@ -2,4 +2,15 @@
     <string name="app_name">SocialWedding</string>
     <string name="appname">Social Wedding</string>
     <string name="don_have_an_account">Don`` have an account?</string>
+    <string name="login">Login</string>
+    <string name="comment">comment</string>
+    <string name="like">like</string>
+    <string name="share_post">Share Post</string>
+    <string name="man">Man</string>
+    <string name="women">Women</string>
+    <string name="explanation">Explanation</string>
+    <string name="share">Share</string>
+    <string name="logout">logout</string>
+
+
 </resources>

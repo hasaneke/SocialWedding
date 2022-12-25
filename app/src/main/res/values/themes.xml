@@ -1,8 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.SocialWedding" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.SocialWedding" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="progressBarStyle">@style/progressBarYellow</item>
+        <item name="editTextStyle">@style/App_EditTextStyle</item>
+        <item name="colorPrimary">@color/yellow_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -11,6 +13,20 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:fontFamily">@font/ralewayregular</item>
+        <item name="statusBarBackground">@color/yellow_500</item>
+        <item name="statusBarForeground">@color/yellow_500</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="Theme.SocialWedding.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="App_EditTextStyle" parent="@android:style/Widget.EditText">
+        <item name="android:background">@drawable/edittextbackground</item>
+        <item name="android:textColor">#808080</item>
+        <item name="android:layout_height">45dip</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingStart">12dp</item>
     </style>
 </resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SharePostActivity"
+    android:gravity="center"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_post"
+        android:layout_marginVertical="40dp"
+        android:textSize="30sp"
+        android:textColor="@color/black" />
+    <RelativeLayout
+        android:layout_marginTop="70dp"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <EditText
+            android:id="@+id/man"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_edittext_backgorund"
+            android:hint="@string/man"
+            android:textAlignment="center" />
+        <EditText
+            android:id="@+id/woman"
+            android:layout_alignParentEnd="true"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_edittext_backgorund"
+            android:hint="@string/women"
+            android:textAlignment="center"/>
+    </RelativeLayout>
+    <EditText
+        android:id="@+id/description"
+        android:inputType="text"
+        android:layout_marginTop="20dp"
+        android:layout_width="320dp"
+        android:layout_height="120dp"
+        android:hint="@string/explanation"
+        android:textAlignment="center"
+        android:background="@drawable/rounded_edittext_backgorund"
+        android:autofillHints="" />
+    <Button
+        android:id="@+id/sharepost"
+        android:layout_marginTop="30dp"
+        android:layout_width="90dp"
+        android:layout_height="45dp"
+        android:text="@string/share"
+        android:textSize="15sp"
+        android:background="@drawable/rounded_edittext_backgorund"/>
+</LinearLayout>

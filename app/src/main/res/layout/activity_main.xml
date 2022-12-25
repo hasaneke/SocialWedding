@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_gravity="center"
-    android:gravity="center"
+    android:gravity="center_horizontal"
+    android:padding="20dp"
     tools:context=".MainActivity">
     <TextView
         android:layout_width="wrap_content"
@@ -15,27 +15,79 @@
         android:layout_gravity="center"
         android:textAlignment="center"
         android:width="220dp"
-        android:textSize="52sp"/>
+        android:layout_marginTop="60dp"
+        android:textSize="42sp"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp" />
     <EditText
+        android:id="@+id/id_email"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:drawablePadding="8dp"
+        android:hint="Email"
+        android:textSize="16sp"
+        android:background="@drawable/edittextbackground"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="16dp"
+        tools:ignore="RtlSymmetry"
+        android:autofillHints=""
+        android:inputType="textEmailAddress" />
+    <EditText
+        android:id="@+id/id_password"
+        android:drawableStart="@drawable/ic_baseline_lock_24"
+        android:drawablePadding="8dp"
+        android:hint="password"
+        android:inputType="numberPassword"
         android:background="@drawable/edittextbackground"
         android:layout_gravity="center"
-        android:layout_width="336dp"
-        android:layout_height="55dp"
-        />
-    <EditText
-        android:background="@drawable/edittextbackground"
-        android:layout_gravity="center"
-        android:layout_width="336dp"
-        android:layout_height="55dp"
-        />
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        tools:ignore="RtlSymmetry"
+        android:autofillHints="" />
     <LinearLayout
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:gravity="start"
+            android:layout_gravity="start"
             android:text="@string/don_have_an_account"
             android:textSize="12sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <Space
+            android:layout_width="170dp"
+            android:layout_height="20dp"/>
+        <TextView
+            android:text="Register"
+            android:textColor="@color/design_default_color_secondary"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
+<FrameLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:minHeight="60dp">
+    <Button
+        android:id="@+id/login"
+        android:layout_marginTop="20dp"
+        android:text="@string/login"
+        android:layout_width="116dp"
+        android:layout_height="52dp"/>
+    <ProgressBar
+        android:id="@+id/main_activity_progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_margin="20sp"
+        android:padding="15sp"
+        android:theme="@style/progressBarYellow"
+        />
+</FrameLayout>
 </LinearLayout>
