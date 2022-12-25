@@ -3,12 +3,14 @@ package com.example.socialwedding.activities;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.socialwedding.R;
 import com.example.socialwedding.adapter.PostsAdapter;
@@ -22,6 +24,11 @@ public class HomeActivity extends AppCompatActivity {
 
     PostsAdapter adapter;
     String[] coupleNames={"Ken and Barbie","Doc and Marty","Shrek and Donkey","Batman and Robin"};
+Button share_button,exit_button;
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME="mypref";
+    //private static final String KEY_NAME ="email";
+    //private static final String KEY_EMAIL ="password";
 
     private final ArrayList<WeddingPost> posts = new ArrayList<>();
     final String dummyText = "Some dummy text for a long explanation " +
@@ -34,6 +41,24 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
         //initDummyData();
+        share_button=(Button)findViewById(R.id.share_button) ;
+        exit_button=(Button) findViewById(R.id.exit_button);
+
+        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+        //String name=sharedPreferences.getString(KEY_NAME,null);
+        //String email=sharedPreferences.getString(KEY_EMAIL,null);
+
+        exit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.clear();
+                editor.commit();
+
+                Toast.makeText(HomeActivity.this,"Exit Succesfully",Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
         DBAdapter db = new DBAdapter(this);
         db.open();
         //db.createTable();
@@ -61,6 +86,14 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
                 intent.putExtra("coupleNames",coupleNames[position]);
                 startActivity(intent);
+            }
+        });
+        share_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                startActivity( new Intent(HomeActivity.this, SharePostActivity.class));
             }
         });
 

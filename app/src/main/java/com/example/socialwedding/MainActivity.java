@@ -3,6 +3,7 @@ package com.example.socialwedding;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -20,9 +21,15 @@ public class MainActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText passwordEditText;
     Button button;
+
     String dummyEmail = "abc@gmail.com";
     String dummyPassword = "123456";
     String loginSuccessCode = "login-success";
+    SharedPreferences sharedPreferences;
+    private static final String SHARED_PREF_NAME="mypref";
+    private static final String KEY_NAME ="email";
+    private static final String KEY_EMAIL ="password";
+
     ProgressBar pb;
     int counter=0;
     @Override
@@ -34,11 +41,27 @@ public class MainActivity extends AppCompatActivity {
         button = (Button) findViewById(R.id.login);
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
 
+        sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
+
+        String name=sharedPreferences.getString(KEY_NAME,null);
+        if(name != null){
+            Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+            startActivity(intent);
+        }
+
         String loginMessage;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
-                progress();
+                SharedPreferences.Editor editor=sharedPreferences.edit();
+                editor.putString(KEY_NAME,emailEditText.getText().toString());
+                editor.putString(KEY_EMAIL,passwordEditText.getText().toString());
+                editor.apply();
+                //Intent intent = new Intent(MainActivity.this,HomeActivity.class);
+                //startActivity(intent);
+                //Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
+
+               progress();
                 pb.setVisibility(View.VISIBLE);
                 button.setVisibility(View.INVISIBLE);
                 Handler handler = new Handler();
@@ -47,15 +70,18 @@ public class MainActivity extends AppCompatActivity {
                         Intent intent = new Intent(MainActivity.this,
                                 HomeActivity.class);
                         MainActivity.this.startActivity(intent);
+                        Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
 
-                        if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
+                       /* if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
                             showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
                         }else {
                             showToastMessage(LOGINSTATUS.LOGIN_FAILED);
-                        }
+                        }*/
                     }
 
                 }, 2000);
+
+
             }
         });
     }
