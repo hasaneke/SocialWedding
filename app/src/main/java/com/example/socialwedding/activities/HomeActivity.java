@@ -30,7 +30,6 @@ public class HomeActivity extends AppCompatActivity {
     Button share_button,exit_button;
     SharedPreferences sharedPreferences;
     SwipeRefreshLayout swipeRefreshLayout;
-    ListView listView;
     private static final String SHARED_PREF_NAME="mypref";
     private final ArrayList<WeddingPost> posts = new ArrayList<>();
     @Override
@@ -82,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, SharePostActivity.class));
             }
         });
-
     }
     private PostsAdapter loadDatabase() {
         DBAdapter db = new DBAdapter(this);
