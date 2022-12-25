@@ -22,13 +22,13 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button button;
 
-    String dummyEmail = "abc@gmail.com";
-    String dummyPassword = "123456";
+   // String dummyEmail = "abc@gmail.com";
+    //String dummyPassword = "123456";
     String loginSuccessCode = "login-success";
     SharedPreferences sharedPreferences;
     private static final String SHARED_PREF_NAME="mypref";
-    private static final String KEY_NAME ="email";
-    private static final String KEY_EMAIL ="password";
+    private static final String KEY_MAIL ="email";
+    private static final String KEY_PASSWORD ="password";
 
     ProgressBar pb;
     int counter=0;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
 
-        String name=sharedPreferences.getString(KEY_NAME,null);
+        String name=sharedPreferences.getString(KEY_MAIL,null);
         if(name != null){
             Intent intent = new Intent(MainActivity.this,HomeActivity.class);
             startActivity(intent);
@@ -54,12 +54,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)  {
                 SharedPreferences.Editor editor=sharedPreferences.edit();
-                editor.putString(KEY_NAME,emailEditText.getText().toString());
-                editor.putString(KEY_EMAIL,passwordEditText.getText().toString());
+                editor.putString(KEY_MAIL,emailEditText.getText().toString());
+                editor.putString(KEY_PASSWORD,passwordEditText.getText().toString());
                 editor.apply();
-                //Intent intent = new Intent(MainActivity.this,HomeActivity.class);
-                //startActivity(intent);
-                //Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
 
                progress();
                 pb.setVisibility(View.VISIBLE);
@@ -80,8 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }, 2000);
-
-
+                
             }
         });
     }

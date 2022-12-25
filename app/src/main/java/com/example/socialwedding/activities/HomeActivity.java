@@ -45,8 +45,7 @@ Button share_button,exit_button;
         exit_button=(Button) findViewById(R.id.exit_button);
 
         sharedPreferences=getSharedPreferences(SHARED_PREF_NAME,MODE_PRIVATE);
-        //String name=sharedPreferences.getString(KEY_NAME,null);
-        //String email=sharedPreferences.getString(KEY_EMAIL,null);
+
 
         exit_button.setOnClickListener(new View.OnClickListener() {
             @Override
