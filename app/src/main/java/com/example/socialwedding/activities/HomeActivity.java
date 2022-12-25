@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.socialwedding.MainActivity;
 import com.example.socialwedding.R;
 import com.example.socialwedding.adapter.PostsAdapter;
 import com.example.socialwedding.database.CacheAdapter;
@@ -55,6 +56,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 CacheAdapter.deleteUser();
                 Toast.makeText(HomeActivity.this,"Exit Succesfully",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -68,14 +71,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
-                intent.putExtra("coupleNames",coupleNames[position]);
+                intent.putExtra("coupleNames",posts.get(position).getWife() + " and " +posts.get(position).getHusband());
+                intent.putExtra("description", posts.get(position).getDescription());
                 startActivity(intent);
             }
         });
         share_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity( new Intent(HomeActivity.this, SharePostActivity.class));
+                startActivity(new Intent(HomeActivity.this, SharePostActivity.class));
             }
         });
 
@@ -103,13 +107,12 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void FetchWeddings(Cursor c)
     {
-        posts.add(new WeddingPost(
+        posts.add(0, new WeddingPost(
                 c.getInt(0),
                 c.getString(1),
                 c.getString(2),
                 c.getString(3),
                 c.getInt(4),
                 c.getInt(5)));
-
     }
 }

@@ -14,22 +14,19 @@ public class DetailActivity extends AppCompatActivity {
     private String gelenCoupleNames;
     private int[] arr;
     private TextView tv;
-String kelime;
+    private TextView descriptionTextView;
+    String coupleName;
+    String description;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         tv= (TextView)findViewById(R.id.tv);
-
-
-        Intent gelenIntent=getIntent();
-        kelime=gelenIntent.getStringExtra("coupleNames");
-
-
-        tv.setText(kelime);
-
-
-
+        Intent intent=getIntent();
+        coupleName=intent.getStringExtra("coupleNames");
+        tv.setText(coupleName);
+        description = intent.getStringExtra("description");
+        descriptionTextView = findViewById(R.id.descriptiondetail);
+        descriptionTextView.setText(description);
     }
 }
