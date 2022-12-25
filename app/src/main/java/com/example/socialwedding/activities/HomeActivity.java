@@ -58,12 +58,8 @@ Button share_button,exit_button;
         });
         DBAdapter db = new DBAdapter(this);
         db.open();
-        //db.createTable();
-
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed1);
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed2);
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed3);
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed4);
+        // RUN FIRST TIME DELETE AFTER
+        // initDummyData(db);
 
         // GET ALL WEDDINGS
         Cursor c = db.getAllWeddings();
@@ -95,6 +91,14 @@ Button share_button,exit_button;
         });
 
     }
+
+    private void initDummyData(DBAdapter db) {
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed1);
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed2);
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed3);
+        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed4);
+    }
+
     public void FetchWeddings(Cursor c)
     {
         posts.add(new WeddingPost(

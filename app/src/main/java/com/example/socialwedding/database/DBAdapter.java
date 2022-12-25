@@ -42,8 +42,9 @@ public class DBAdapter {
         public void onCreate(SQLiteDatabase db)
         {
             try {
-                Log.w(TAG, "table is created");
+                Log.w(TAG, "table is created wtf");
                 db.execSQL(DATABASE_CREATE);
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -88,6 +89,9 @@ public class DBAdapter {
     public boolean deletePost(long rowId)
     {
         return db.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
+    }
+    public boolean clearDatabase() {
+       return context.deleteDatabase(DATABASE_NAME);
     }
     //---retrieves all the contacts---
     public Cursor getAllWeddings()

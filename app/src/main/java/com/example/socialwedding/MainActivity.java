@@ -26,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
     String dummyEmail = "abc@gmail.com";
     String dummyPassword = "123456";
     String loginSuccessCode = "login-success";
-    SharedPreferences sharedPreferences;
-    private static final String SHARED_PREF_NAME="mypref";
-    private static final String KEY_MAIL ="email";
-    private static final String KEY_PASSWORD ="password";
 
     ProgressBar pb;
     int counter=0;
