@@ -21,8 +21,7 @@ import com.example.socialwedding.models.WeddingPost;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
-
-
+    
     PostsAdapter adapter;
     String[] coupleNames={"Ken and Barbie","Doc and Marty","Shrek and Donkey","Batman and Robin"};
 Button share_button,exit_button;
