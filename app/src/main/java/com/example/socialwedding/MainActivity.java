@@ -2,8 +2,10 @@ package com.example.socialwedding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -22,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     EditText emailEditText;
     EditText passwordEditText;
     Button button;
-
+    MediaPlayer mediaPlayer;
+    //Context context;
     String dummyEmail = "abc@gmail.com";
     String dummyPassword = "123456";
     String loginSuccessCode = "login-success";
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.id_password);
         button = (Button) findViewById(R.id.login);
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
+        mediaPlayer=MediaPlayer.create(this,R.raw.selamun_aleykum);
 
         CacheAdapter cacheAdapter = new CacheAdapter(getApplicationContext());
         String name = cacheAdapter.checkUserExist();
@@ -46,14 +50,17 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view)  {
                 login();
             }
         });
+
     }
 
     private void login() {
+        mediaPlayer.start();
         String loginMessage;
         CacheAdapter.saveUser(emailEditText.getText().toString(),passwordEditText.getText().toString());
         progress();
@@ -75,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }, 2000);
+        //mediaPlayer.stop();
     }
 
     public void progress()   {
