@@ -19,6 +19,7 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/share_button_design_foreground" />
+
     </RelativeLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh_id"
