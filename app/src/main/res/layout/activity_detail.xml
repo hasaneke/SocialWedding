@@ -51,6 +51,16 @@
                     android:layout_marginTop="20dp"
                     android:gravity="center"
                     android:textColor="@color/black" />
+
+                <ListView
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:id="@+id/comment_list_view"
+                    android:visibility="visible"
+
+                    >
+
+                </ListView>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -93,7 +103,7 @@ android:id="@+id/profile_photo"
                             android:layout_height="25dp"
 
                             android:background="@color/purple_200"
-                            android:id="@+id/comment1_text_view"
+                            android:id="@+id/comment_text_view"
                             android:text="muratttt"
 
                             android:textSize="16dp"
