@@ -7,6 +7,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,9 +22,18 @@ import com.example.socialwedding.adapter.PostsAdapter;
 import com.example.socialwedding.database.CacheAdapter;
 import com.example.socialwedding.database.DBAdapter;
 import com.example.socialwedding.models.WeddingPost;
+import com.example.socialwedding.service.Service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.net.URLConnection;
 import java.util.Comparator;
+import java.util.concurrent.ExecutionException;
 
 public class HomeActivity extends AppCompatActivity {
     String[] coupleNames={"Ken and Barbie","Doc and Marty","Shrek and Donkey","Batman and Robin"};
@@ -31,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SwipeRefreshLayout swipeRefreshLayout;
     private static final String SHARED_PREF_NAME="mypref";
-    private final ArrayList<WeddingPost> posts = new ArrayList<>();
+    private  ArrayList<WeddingPost> posts = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +51,14 @@ public class HomeActivity extends AppCompatActivity {
         share_button = findViewById(R.id.share_button);
         swipeRefreshLayout = findViewById(R.id.refresh_id);
         ListView mListView = findViewById(R.id.postsList);
-        mListView.setAdapter(loadDatabase());
+
+        posts = fetchPosts(mListView);
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(true);
-                mListView.setAdapter(loadDatabase());
+                fetchPosts(mListView);
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -60,17 +72,14 @@ public class HomeActivity extends AppCompatActivity {
                 finish();
             }
         });
-   
         // RUN THE FIRST TIME DELETE AFTER
         // initDummyData(db);
-
         // GET ALL WEDDINGS
-      
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(HomeActivity.this, DetailActivity.class);
-                intent.putExtra("coupleNames",posts.get(position).getWife() + " and " +posts.get(position).getHusband());
+                intent.putExtra("coupleNames",posts.get(position).getTitle());
                 intent.putExtra("description", posts.get(position).getDescription());
                 startActivity(intent);
             }
@@ -82,35 +91,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-    private PostsAdapter loadDatabase() {
-        DBAdapter db = new DBAdapter(this);
-        db.open();
-        Cursor c = db.getAllWeddings();
-        posts.clear();
-        if (c.moveToFirst())
-        {
-            do {
-                FetchWeddings(c);
-            } while (c.moveToNext());
-        }
-        db.close();
-       return new PostsAdapter(getApplicationContext(), posts);
-    }
 
-    private void initDummyData(DBAdapter db) {
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed1);
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed2);
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed3);
-        db.insertWedding("Murat Yıldırım","Shakira", "Mükemmel bir düğündü, Afrika``a taşınıyorum", 1258, R.drawable.wed4);
-    }
-    public void FetchWeddings(Cursor c)
-    {
-        posts.add(0, new WeddingPost(
-                c.getInt(0),
-                c.getString(1),
-                c.getString(2),
-                c.getString(3),
-                c.getInt(4),
-                c.getInt(5)));
+    private ArrayList<WeddingPost> fetchPosts(ListView mListView) {
+        try {
+            AsyncTask<URL, Integer, ArrayList<WeddingPost>> posts;
+            posts = new Service().execute(new URL("https://dummyjson.com/posts"));
+            mListView.setAdapter(new PostsAdapter(getApplicationContext(), posts.get()));
+            return posts.get();
+        } catch (MalformedURLException | ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
     }
 }

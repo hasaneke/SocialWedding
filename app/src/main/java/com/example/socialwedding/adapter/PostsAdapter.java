@@ -35,13 +35,13 @@ public class PostsAdapter extends ArrayAdapter<WeddingPost> implements View.OnCl
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view= LayoutInflater.from(context).inflate(R.layout.post_layout,null);
         if(view!=null){
-            TextView coupleNamesTextView = (TextView) view.findViewById(R.id.wedding_item_couple_names);
+            TextView titleTextView = (TextView) view.findViewById(R.id.title);
             TextView scoreTextView = (TextView) view.findViewById(R.id.wedding_like_count);
-            TextView messagesTextView = (TextView) view.findViewById(R.id.wedding_item_messages);
+            TextView bodyView = (TextView) view.findViewById(R.id.body);
             ImageView weddingImage = view.findViewById(R.id.wedding_item_image);
-            coupleNamesTextView.setText(resource.get(position).getHusband() +" "+ resource.get(position).getWife());
+            titleTextView.setText(resource.get(position).getTitle());
             scoreTextView.setText(String.valueOf("like " + resource.get(position).getLikeCount()));
-            messagesTextView.setText(resource.get(position).getDescription());
+            bodyView.setText(resource.get(position).getDescription());
             weddingImage.setBackgroundResource(resource.get(position).getImageId());
         }
         return view;

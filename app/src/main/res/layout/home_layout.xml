@@ -4,8 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingHorizontal="12dp"
-  >
+    android:paddingHorizontal="12dp">
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,16 +20,7 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:background="@drawable/share_button_design_foreground" />
-
     </RelativeLayout>
-    <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_margin="10dp"
-        app:cardCornerRadius="15dp"
-
-android:layout_gravity="center"        >
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/refresh_id"
             android:layout_width="match_parent"
@@ -40,9 +30,4 @@ android:layout_gravity="center"        >
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-
 </LinearLayout>

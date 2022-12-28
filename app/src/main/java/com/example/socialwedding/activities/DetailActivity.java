@@ -50,42 +50,26 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         r=new Random();
         int number=r.nextInt(9)+1;
-        commentsPosts.add(new CommentPost(number,nameList[number],commentList[number],photoList[number]));
-        commentsPosts.add(new CommentPost(1,nameList[1],commentList[1],photoList[1]));
-        commentsPosts.add(new CommentPost(2,nameList[2],commentList[2],photoList[2]));
-        commentsPosts.add(new CommentPost(3,nameList[3],commentList[3],photoList[3]));
-        commentsPosts.add(new CommentPost(4,nameList[4],commentList[4],photoList[4]));
-        commentsPosts.add(new CommentPost(5,nameList[5],commentList[5],photoList[5]));
+       dummyList(number);
 
         ListView mListView = findViewById(R.id.comment_list_view);
-       // mListView.setAdapter(loadDatabase());
         //mListView.setAdapter();
         //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,commentList);
         CommentAdapter adapter=new CommentAdapter(DetailActivity.this,commentsPosts);
-
         //ArrayAdapter<CommentPost> adapter=new ArrayAdapter<CommentPost>(this,commentsPosts.size(),commentsPosts);
-
         mListView.setAdapter(adapter);
-
-
-
         tv= (TextView)findViewById(R.id.tv);
-        //pp=(ImageView)findViewById(R.id.profile_photo);
-        //pp.setBackgroundResource(photoList[number]);
-        //commentTextView=(TextView)findViewById(R.id.comment_text_view);
-        //commentTextView.setText(commentList[number]);
-        //nameTextView=(TextView)findViewById(R.id.name_text_view);
-        //nameTextView.setText(nameList[number]);
-
         Intent intent=getIntent();
         coupleName=intent.getStringExtra("coupleNames");
         tv.setText(coupleName);
         description = intent.getStringExtra("description");
         descriptionTextView = findViewById(R.id.descriptiondetail);
         descriptionTextView.setText(description);
-
-
     }
 
-
+    private void dummyList(int number) {
+        commentsPosts.add(new CommentPost(number,nameList[number],commentList[number],photoList[number]));
+        commentsPosts.add(new CommentPost(1,nameList[1],commentList[1],photoList[1]));
+        commentsPosts.add(new CommentPost(2,nameList[2],commentList[2],photoList[2]));
+    }
 }

@@ -3,8 +3,6 @@
 <androidx.cardview.widget.CardView android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
-
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
@@ -12,25 +10,24 @@
         android:layout_height="wrap_content"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
-        android:gravity="center">
-
+        android:paddingHorizontal="8dp"
+        android:gravity="center">x
         <ImageView
-
             android:id="@+id/wedding_item_image"
             android:layout_width="match_parent"
             android:layout_height="200dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/wedding_item_couple_names"
+            android:id="@+id/title"
             android:text="Couple Names"
             android:layout_gravity="start"
             android:textSize="22sp"
             android:layout_marginTop="12dp" />
         <TextView
+            android:id="@+id/body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/wedding_item_messages"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="12dp"
             android:text="Messagess asdsdas

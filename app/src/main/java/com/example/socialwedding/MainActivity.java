@@ -3,6 +3,8 @@ package com.example.socialwedding;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,10 +28,6 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     TextView registerTextView;
     //Context context;
-    String dummyEmail = "abc@gmail.com";
-    String dummyPassword = "123456";
-    String loginSuccessCode = "login-success";
-
     ProgressBar pb;
     int counter=0;
     @Override
@@ -50,8 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
+        mediaPlayer=MediaPlayer.create(this,R.raw.selamun_aleykum);
         CacheAdapter cacheAdapter = new CacheAdapter(getApplicationContext());
         String name = cacheAdapter.checkUserExist();
 
@@ -60,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view)  {
                 login();
