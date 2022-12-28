@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.example.socialwedding.R;
+import com.example.socialwedding.adapter.CommentAdapter;
 import com.example.socialwedding.models.CommentPost;
 import com.example.socialwedding.models.WeddingPost;
 
@@ -47,27 +48,33 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        commentsPosts.add(new CommentPost(0,nameList[0],commentList[0],photoList[0]));
+        r=new Random();
+        int number=r.nextInt(9)+1;
+        commentsPosts.add(new CommentPost(number,nameList[number],commentList[number],photoList[number]));
         commentsPosts.add(new CommentPost(1,nameList[1],commentList[1],photoList[1]));
         commentsPosts.add(new CommentPost(2,nameList[2],commentList[2],photoList[2]));
+        commentsPosts.add(new CommentPost(3,nameList[3],commentList[3],photoList[3]));
+        commentsPosts.add(new CommentPost(4,nameList[4],commentList[4],photoList[4]));
+        commentsPosts.add(new CommentPost(5,nameList[5],commentList[5],photoList[5]));
+
         ListView mListView = findViewById(R.id.comment_list_view);
        // mListView.setAdapter(loadDatabase());
         //mListView.setAdapter();
-        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,liste);
+        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,commentList);
+        CommentAdapter adapter=new CommentAdapter(DetailActivity.this,commentsPosts);
 
-        ArrayAdapter<CommentPost> adapter=new ArrayAdapter<CommentPost>(this, android.R.layout.simple_list_item_1);
+        //ArrayAdapter<CommentPost> adapter=new ArrayAdapter<CommentPost>(this,commentsPosts.size(),commentsPosts);
 
         mListView.setAdapter(adapter);
 
 
-        r=new Random();
-        int number=r.nextInt(9)+1;
+
         tv= (TextView)findViewById(R.id.tv);
-        pp=(ImageView)findViewById(R.id.profile_photo);
+        //pp=(ImageView)findViewById(R.id.profile_photo);
         //pp.setBackgroundResource(photoList[number]);
-        commentTextView=(TextView)findViewById(R.id.comment_text_view);
+        //commentTextView=(TextView)findViewById(R.id.comment_text_view);
         //commentTextView.setText(commentList[number]);
-        nameTextView=(TextView)findViewById(R.id.name_text_view);
+        //nameTextView=(TextView)findViewById(R.id.name_text_view);
         //nameTextView.setText(nameList[number]);
 
         Intent intent=getIntent();

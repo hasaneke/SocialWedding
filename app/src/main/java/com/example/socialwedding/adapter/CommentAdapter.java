@@ -25,7 +25,7 @@ public class CommentAdapter extends ArrayAdapter<CommentPost> implements View.On
     final private ArrayList<CommentPost> resource;
     Context context;
     public CommentAdapter(@NonNull Context context, ArrayList<CommentPost> resource) {
-       super(context,R.layout.activity_detail,resource);
+       super(context,R.layout.comment_layout,resource);
         this.resource = resource;
         this.context = context;
     }
@@ -37,11 +37,14 @@ public class CommentAdapter extends ArrayAdapter<CommentPost> implements View.On
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        View view= LayoutInflater.from(context).inflate(R.layout.activity_detail,null);
+        View view= LayoutInflater.from(context).inflate(R.layout.comment_layout,null);
         if(view!=null){
             TextView names=(TextView) view.findViewById(R.id.name_text_view) ;
             TextView comments=(TextView) view.findViewById(R.id.comment_text_view);
             ImageView profil_photo=(ImageView) view.findViewById(R.id.profile_photo);
+            names.setText(resource.get(position).getName());
+            comments.setText(resource.get(position).getComment());
+           // profil_photo.setBackgroundResource(resource.get().g);
 
 
             profil_photo.setBackgroundResource(resource.get(position).getImageId());
