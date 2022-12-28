@@ -2,9 +2,7 @@ package com.example.socialwedding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.socialwedding.activities.HomeActivity;
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordEditText;
     Button button;
     MediaPlayer mediaPlayer;
+    TextView registerTextView;
     //Context context;
     String dummyEmail = "abc@gmail.com";
     String dummyPassword = "123456";
@@ -40,7 +40,17 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = (EditText) findViewById(R.id.id_password);
         button = (Button) findViewById(R.id.login);
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
-        mediaPlayer=MediaPlayer.create(this,R.raw.selamun_aleykum);
+        mediaPlayer=MediaPlayer.create(this,R.raw.confirm_sound);
+        registerTextView=(TextView) findViewById(R.id.register);
+
+        registerTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegisterPage.class);
+                startActivity(intent);
+            }
+        });
+
 
         CacheAdapter cacheAdapter = new CacheAdapter(getApplicationContext());
         String name = cacheAdapter.checkUserExist();

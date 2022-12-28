@@ -11,6 +11,7 @@
     <string name="explanation">Explanation</string>
     <string name="share">Share</string>
     <string name="logout">logout</string>
+    <string name="sign_in">Sign In</string>
 
 
 </resources>

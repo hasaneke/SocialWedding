@@ -64,7 +64,9 @@
             android:layout_width="170dp"
             android:layout_height="20dp"/>
         <TextView
+            android:id="@+id/register"
             android:text="Register"
+            android:clickable="true"
             android:textColor="@color/design_default_color_secondary"
             android:textSize="12sp"
             android:layout_width="wrap_content"
