@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+                dbAdapter.open();
                 Cursor cursor =  dbAdapter.getUser(passwordEditText.getText().toString());
                 if(cursor != null) {
                     Intent intent = new Intent(MainActivity.this,
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 }else {
                     showToastMessage(LOGINSTATUS.LOGIN_FAILED);
                 }
+                dbAdapter.close();
             }
 
         }, 2000);
