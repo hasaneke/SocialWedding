@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.example.socialwedding.activities.HomeActivity;
 import com.example.socialwedding.database.CacheAdapter;
+import com.example.socialwedding.database.DBAdapter;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         pb=(ProgressBar)findViewById(R.id.main_activity_progress_bar);
         mediaPlayer=MediaPlayer.create(this,R.raw.confirm_sound);
         registerTextView=(TextView) findViewById(R.id.register);
-
+        DBAdapter dbAdapter = new DBAdapter(getApplicationContext());
         registerTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)  {
-                login();
+                login(dbAdapter);
             }
         });
 
     }
 
-    private void login() {
+    private void login(DBAdapter dbAdapter) {
         mediaPlayer.start();
         String loginMessage;
         CacheAdapter.saveUser(emailEditText.getText().toString(),passwordEditText.getText().toString());
@@ -75,16 +77,15 @@ public class MainActivity extends AppCompatActivity {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
-                Intent intent = new Intent(MainActivity.this,
-                        HomeActivity.class);
-                MainActivity.this.startActivity(intent);
-                Toast.makeText(MainActivity.this,"login succes",Toast.LENGTH_SHORT).show();
-
-               /* if(emailEditText.getText().toString().equals(dummyEmail) && dummyPassword.equals(passwordEditText.getText().toString())){
+                Cursor cursor =  dbAdapter.getUser(passwordEditText.getText().toString());
+                if(cursor != null) {
+                    Intent intent = new Intent(MainActivity.this,
+                            HomeActivity.class);
+                    MainActivity.this.startActivity(intent);
                     showToastMessage(LOGINSTATUS.LOGIN_SUCCESS);
                 }else {
                     showToastMessage(LOGINSTATUS.LOGIN_FAILED);
-                }*/
+                }
             }
 
         }, 2000);

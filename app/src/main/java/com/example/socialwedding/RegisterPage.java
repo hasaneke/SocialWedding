@@ -12,32 +12,27 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.socialwedding.database.DBAdapter;
+
 public class RegisterPage extends AppCompatActivity {
-
     EditText emailEditText,passwordEditText;
-    Button signInButton;
-   // ViewGroup group = (ViewGroup) toast.getView();
-    //TextView messageTextView = (TextView) group.getChildAt(0);
-    //messageTextView.setTextSize(25);
-
+    Button registerButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_page);
         emailEditText=(EditText) findViewById(R.id.id_email);
         passwordEditText=(EditText) findViewById(R.id.id_password);
-        signInButton=(Button) findViewById(R.id.sign_in);
-
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        registerButton = (Button) findViewById(R.id.sign_in);
+        DBAdapter dbAdapter = new DBAdapter(getApplicationContext());
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                if(emailEditText.getText().toString().matches("")  || passwordEditText.getText().toString().matches("")){Toast.makeText(RegisterPage.this,"Please enter both fields",Toast.LENGTH_SHORT).show();
-
+                if(emailEditText.getText().toString().matches("") || passwordEditText.getText().toString().matches("")){Toast.makeText(RegisterPage.this,"Please enter both fields",Toast.LENGTH_SHORT).show();
 
                 }else{
-
+                    dbAdapter.open();
+                    dbAdapter.insertUser(emailEditText.getText().toString(), passwordEditText.getText().toString());
                     Intent intent = new Intent(RegisterPage.this,MainActivity.class);
                     startActivity(intent);
                 }
