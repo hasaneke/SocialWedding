@@ -1,13 +1,21 @@
 package com.example.socialwedding.activities;
 
+import static java.lang.Integer.parseInt;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,9 +48,10 @@ public class DetailActivity extends AppCompatActivity {
     private String gelenCoupleNames;
     private int[] arr;
     private TextView tv,commentTextView,nameTextView;
-    private TextView descriptionTextView;
+    private TextView descriptionTextView,likeTextView;
     String coupleName;
     String description;
+    Button likeButton;
     private final ArrayList<CommentPost> commentsPosts = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,12 +60,24 @@ public class DetailActivity extends AppCompatActivity {
         r=new Random();
         int number=r.nextInt(9)+1;
        dummyList(number);
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        //baska bir activityden erşişitm ama herhangi bir işlem gerçekleştirilemiyor
+      // View vi = inflater.inflate(R.layout.comment_layout, null); //log.xml is your file.
+       // TextView likeTextView = (TextView)vi.findViewById(R.id.like_text_view);
+       // Button likeButton=(Button)vi.findViewById(R.id.like_button);
+
+       /* LinearLayout rl = (LinearLayout) findViewById(R.id.linear_layout);
+        View vi = inflater.inflate(R.layout.comment_layout, null); //log.xml is your file.
+        TextView tv = (TextView)vi.findViewById(R.id.like_text_view);
+        Button likeButton=(Button)vi.findViewById(R.id.like_button);*/
+
+       //likeButton=(Button)findViewById(R.layout.comment_layout);
+       //likeTextView=(TextView)findViewById(R.id.like_text_view);
 
         ListView mListView = findViewById(R.id.comment_list_view);
-        //mListView.setAdapter();
-        //ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,commentList);
+
         CommentAdapter adapter=new CommentAdapter(DetailActivity.this,commentsPosts);
-        //ArrayAdapter<CommentPost> adapter=new ArrayAdapter<CommentPost>(this,commentsPosts.size(),commentsPosts);
         mListView.setAdapter(adapter);
         tv= (TextView)findViewById(R.id.tv);
         Intent intent=getIntent();
@@ -65,6 +86,18 @@ public class DetailActivity extends AppCompatActivity {
         description = intent.getStringExtra("description");
         descriptionTextView = findViewById(R.id.descriptiondetail);
         descriptionTextView.setText(description);
+
+
+       /* likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //public static int parseInt(String s)
+                likeButton.setBackgroundColor(Color.parseColor("#008000"));
+                int likeNumber=Integer.parseInt(likeTextView.getText().toString());
+
+                likeTextView.setText(++likeNumber);
+            }
+        });*/
     }
 
     private void dummyList(int number) {

@@ -22,7 +22,7 @@
             android:orientation="vertical">
             <TextView
                 android:layout_marginHorizontal="10dp"
-                android:layout_width="match_parent"
+                android:layout_width="285dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/name_text_view"
                 android:text="murat"
@@ -31,10 +31,30 @@
             <TextView
                 android:layout_marginTop="8dp"
                 android:layout_marginHorizontal="10dp"
-                android:layout_width="match_parent"
+
+                android:layout_width="285dp"
 android:layout_height="wrap_content"
                 android:id="@+id/comment_text_view"
                 android:text="murat"
                 android:textSize="12sp" />
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/like_button"
+            android:background="@drawable/like_button_design2_foreground"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:clickable="true"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/like_text_view"
+            android:text="120"
+            android:textSize="14sp"/>
+    </LinearLayout>
 </LinearLayout>
