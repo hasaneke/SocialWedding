@@ -33,10 +33,7 @@ public class SharePostActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mediaPlayer.start();
                 dbAdapter.open();
-                dbAdapter.insertWedding(manET.getText().toString() + womanET.getText().toString(),
-                        descriptionET.getText().toString(),
-                        1258,
-                        R.drawable.wed1);
+
                 Intent intent = new Intent(SharePostActivity.this, HomeActivity.class);
                 startActivity(intent);
             }
