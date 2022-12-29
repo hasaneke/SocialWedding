@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class CommentAdapter extends ArrayAdapter<CommentPost> implements View.On
 
     final private ArrayList<CommentPost> resource;
     Context context;
+
     public CommentAdapter(@NonNull Context context, ArrayList<CommentPost> resource) {
        super(context,R.layout.comment_layout,resource);
         this.resource = resource;
@@ -34,6 +36,9 @@ public class CommentAdapter extends ArrayAdapter<CommentPost> implements View.On
     public void onClick(View v) {
 
     }
+
+
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {

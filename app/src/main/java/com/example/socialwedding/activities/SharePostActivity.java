@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.socialwedding.R;
+import com.example.socialwedding.RegisterPage;
 import com.example.socialwedding.database.DBAdapter;
 
 public class SharePostActivity extends AppCompatActivity {
@@ -31,11 +33,18 @@ public class SharePostActivity extends AppCompatActivity {
         shareBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mediaPlayer.start();
-                dbAdapter.open();
 
-                Intent intent = new Intent(SharePostActivity.this, HomeActivity.class);
-                startActivity(intent);
+                if(manET.getText().toString().matches("") || womanET.getText().toString().matches("") || descriptionET.getText().toString().matches("")){
+                    Toast.makeText(SharePostActivity.this,"Please enter all fields",Toast.LENGTH_SHORT).show();
+
+                }
+                else{
+                    mediaPlayer.start();
+                    dbAdapter.open();
+
+                    Intent intent = new Intent(SharePostActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }

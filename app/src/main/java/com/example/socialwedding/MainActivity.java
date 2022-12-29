@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        mediaPlayer=MediaPlayer.create(this,R.raw.selamun_aleykum);
+        mediaPlayer=MediaPlayer.create(this,R.raw.confirm_sound);
         CacheAdapter cacheAdapter = new CacheAdapter(getApplicationContext());
         String name = cacheAdapter.checkUserExist();
 

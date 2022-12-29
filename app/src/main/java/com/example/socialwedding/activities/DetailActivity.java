@@ -63,9 +63,13 @@ public class DetailActivity extends AppCompatActivity {
         LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //baska bir activityden erşişitm ama herhangi bir işlem gerçekleştirilemiyor
-      // View vi = inflater.inflate(R.layout.comment_layout, null); //log.xml is your file.
-       // TextView likeTextView = (TextView)vi.findViewById(R.id.like_text_view);
-       // Button likeButton=(Button)vi.findViewById(R.id.like_button);
+       //View vi = inflater.inflate(R.layout.comment_layout, null); //log.xml is your file.
+       //TextView likeTextView = (TextView)vi.findViewById(R.id.like_text_view);
+       //Button likeButton=(Button)vi.findViewById(R.id.like_button);
+
+
+
+
 
        /* LinearLayout rl = (LinearLayout) findViewById(R.id.linear_layout);
         View vi = inflater.inflate(R.layout.comment_layout, null); //log.xml is your file.
